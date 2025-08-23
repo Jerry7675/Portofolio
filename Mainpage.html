@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandesh Poudel Chhetri - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#faf6ff',
+                            100: '#f2e9fe',
+                            200: '#e6d6fd',
+                            300: '#d3b4fb',
+                            400: '#b885f7',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7c3aed',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        .animate-scale {
+            animation: scale 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .typing-animation {
+            border-right: 2px solid;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: currentColor; }
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .skill-bar.animate {
+            transform: scaleX(1);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Dark mode styles */
+        .dark {
+            --gradient-from: #4f46e5;
+            --gradient-to: #7e22ce;
+            color: #e2e8f0;
+        }
+        
+        .light {
+            --gradient-from: #3b82f6;
+            --gradient-to: #8b5cf6;
+        }
+        
+        .dark-mode-toggle {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            border-radius: 50px;
+            background: #1e293b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+        
+        .dark .dark-mode-toggle {
+            background: #0f172a;
+        }
+        
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: white;
+            transition: transform 0.3s;
+        }
+        
+        .dark .toggle-thumb {
+            transform: translateX(28px);
+        }
+        
+        .dark .bg-white {
+            background-color: #1e293b !important;
+        }
+        
+        .dark .text-gray-800 {
+            color: #e2e8f0 !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: #cbd5e1 !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #94a3b8 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1f2937 !important;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+        
+        /* Mobile menu animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 300px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .typing-animation {
+                animation: none;
+                border-right: none;
+                white-space: normal;
+            }
+            
+            .floating {
+                animation: none;
+            }
+            
+            .grid-cols-2, .grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .text-4xl, .text-6xl {
+                font-size: 2rem !important;
+            }
+            
+            .text-xl, .text-2xl {
+                font-size: 1.1rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 light">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 dark:bg-gray-900/90 dark:border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-bold text-xl text-gray-800 dark:text-white">Sandesh.dev</div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">About</a>
+                    <a href="#skills" class="text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Skills</a>
+                    <a href="#projects" class="text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Projects</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Contact</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <div class="flex items-center ml-4">
+                        <div class="dark-mode-toggle" id="darkModeToggle">
+                            <i class="fas fa-sun text-yellow-400 text-sm"></i>
+                            <i class="fas fa-moon text-blue-200 text-sm"></i>
+                            <span class="toggle-thumb"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 md:hidden">
+                    <div class="dark-mode-toggle mr-2" id="darkModeToggleMobile">
+                        <i class="fas fa-sun text-yellow-400 text-sm"></i>
+                        <i class="fas fa-moon text-blue-200 text-sm"></i>
+                        <span class="toggle-thumb"></span>
+                    </div>
+                    <button id="mobile-menu-btn" class="text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t border-gray-200 dark:bg-gray-900 dark:border-gray-800">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Home</a>
+                <a href="#about" class="block text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">About</a>
+                <a href="#skills" class="block text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Skills</a>
+                <a href="#projects" class="block text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Projects</a>
+                <a href="#contact" class="block text-gray-700 hover:text-primary-600 transition-colors dark:text-gray-300 dark:hover:text-primary-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-bg flex items-center justify-center relative overflow-hidden pt-16">
+        <div class="absolute inset-0 bg-black/10 dark:bg-black/30"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+            <div class="animate-scale">
+                <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center overflow-hidden border-2 border-white">
+                    <!-- Replace the src attribute with the path to your actual photo -->
+                    <img src="./sande.jpg" 
+                         alt="Sandesh Poudel Chhetri" 
+                         class="w-full h-full object-cover"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-full h-full hidden items-center justify-center">
+                        <i class="fas fa-user text-4xl text-white"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-slide-up">
+                Hi, I'm <span class="text-amber-300">Sandesh Poudel Chhetri</span>
+            </h1>
+            
+            <div class="text-xl md:text-2xl mb-6 animate-slide-up" style="animation-delay: 0.2s;">
+                <span class="typing-animation">Computer Engineer & Frontend Developer</span>
+            </div>
+            
+            <p class="text-lg md:text-xl mb-8 animate-slide-up opacity-90 max-w-2xl mx-auto" style="animation-delay: 0.4s;">
+                I build modern web applications with React.js, Tailwind CSS, and Firebase. I also have a good grasp in SQL and Python. Currently pursuing Computer Engineering with a passion for innovative solutions.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style="animation-delay: 0.6s;">
+                <a href="#projects" class="px-8 py-4 bg-white text-primary-600 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
+                    View My Work
+                </a>
+                <a href="#contact" class="px-8 py-4 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-primary-600 transition-all transform hover:scale-105 dark:border-gray-300 dark:hover:bg-gray-300">
+                    Contact Me
+                </a>
+            </div>
+            
+            <div class="flex justify-center space-x-6 mt-8 animate-slide-up" style="animation-delay: 0.8s;">
+                <a href="https://github.com/jerry7675" target="_blank" class="text-white hover:text-amber-300 transition-colors transform hover:scale-110">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sandesh-poudel-chhetri-2723a5202/" target="_blank" class="text-white hover:text-amber-300 transition-colors transform hover:scale-110">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/sandesh_chhetri_c" target="_blank" class="text-white hover:text-amber-300 transition-colors transform hover:scale-110">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="mailto:sandeshchhetri5677@gmail.com" class="text-white hover:text-amber-300 transition-colors transform hover:scale-110">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white hover:text-amber-300 transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Rest of your content remains the same -->
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">About Me</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 animate-slide-up">
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">Hello! I'm Sandesh Poudel Chhetri</h3>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        I'm a passionate Computer Engineering student based in Pokhara, Nepal, currently pursuing my Bachelor's degree at Pokhara Engineering College. With a strong foundation in frontend development, I specialize in creating modern, responsive web applications using React.js, JavaScript, and Tailwind CSS. I also have experience working with backend technologies like Python and SQL, and I'm proficient in using Firebase for building scalable applications.
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        My journey in tech started with curiosity about how websites work, and has evolved into building complete web solutions. I'm particularly interested in creating user-friendly interfaces and exploring the potential of AI in web development. When I'm not coding, you'll find me exploring new technologies or working on innovative projects.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-800 dark:text-white">Location</h4>
+                            <p class="text-gray-600 dark:text-gray-300">Pokhara, Nepal</p>
+                        </div>
+                        <div class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                            <h4 class="font-semibold text-gray-800 dark:text-white">Education</h4>
+                            <p class="text-gray-600 dark:text-gray-300">Computer Engineering</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative floating">
+                    <div class="w-80 h-80 mx-auto bg-gradient-to-br from-primary-400 to-secondary-600 rounded-3xl shadow-2xl flex items-center justify-center">
+                        <i class="fas fa-code text-8xl text-white"></i>
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-amber-400 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-emerald-400 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fas fa-rocket text-white text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-gray-800 dark:to-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Skills & Technologies</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Here are the technologies I work with to bring ideas to life
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Frontend Skills -->
+                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-palette text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Frontend</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">HTML/CSS</span>
+                                <span class="text-gray-500 dark:text-gray-400">90%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-400 to-pink-600" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">JavaScript</span>
+                                <span class="text-gray-500 dark:text-gray-400">85%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-400 to-pink-600" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">React.js</span>
+                                <span class="text-gray-500 dark:text-gray-400">80%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-400 to-pink-600" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">Tailwind CSS</span>
+                                <span class="text-gray-500 dark:text-gray-400">85%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-orange-400 to-pink-600" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Backend Skills -->
+                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-server text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Backend & Database</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">Python</span>
+                                <span class="text-gray-500 dark:text-gray-400">70%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-400 to-blue-600" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">SQL</span>
+                                <span class="text-gray-500 dark:text-gray-400">70%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-400 to-blue-600" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">C/C++</span>
+                                <span class="text-gray-500 dark:text-gray-400">65%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-green-400 to-blue-600" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tools text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Tools & Others</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">Git & GitHub</span>
+                                <span class="text-gray-500 dark:text-gray-400">80%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-purple-400 to-indigo-600" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 dark:text-gray-300">UI/UX Design</span>
+                                <span class="text-gray-500 dark:text-gray-400">70%</span>
+                            </div>
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-purple-400 to-indigo-600" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Featured Projects</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Here are some of my recent projects that showcase my skills and passion for development
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1: Patient Management System -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center">
+                        <i class="fas fa-hospital text-6xl text-white"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Patient Management System</h3>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/jerry7675/patient-management-system" target="_blank" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fas fa-external-link-alt text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            A comprehensive hospital patient record system featuring admin verification, doctor authentication, and secure patient data management. Built with modern web technologies for healthcare professionals.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/30 dark:text-blue-300">React.js</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm dark:bg-green-900/30 dark:text-green-300">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm dark:bg-purple-900/30 dark:text-purple-300">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm dark:bg-orange-900/30 dark:text-orange-300">Firebase</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex-1 text-center py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/jerry7675/patient-management-system" target="_blank" class="flex-1 text-center py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: AI Debate System -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                        <i class="fas fa-robot text-6xl text-white"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">AI Debate System</h3>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/jerry7675/mission1" target="_blank" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fas fa-external-link-alt text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            An innovative AI-powered debate platform where two AI models take opposing sides on topics, with an AI judge reviewing arguments and selecting winners. Showcases advanced AI integration and real-time interaction.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/30 dark:text-blue-300">React.js</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm dark:bg-yellow-900/30 dark:text-yellow-300">AI/ML</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm dark:bg-purple-900/30 dark:text-purple-300">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm dark:bg-red-900/30 dark:text-red-300">Ollama models</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex-1 text-center py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/jerry7675/mission1" target="_blank" class="flex-1 text-center py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Portfolio Website -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-secondary-500 to-pink-600 flex items-center justify-center">
+                        <i class="fas fa-user-circle text-6xl text-white"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Portfolio Website</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fas fa-external-link-alt text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            A modern, responsive portfolio website (this site!) showcasing my projects, skills, and experience. Features smooth animations, mobile-first design, and interactive elements.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm dark:bg-orange-900/30 dark:text-orange-300">HTML5</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm dark:bg-yellow-900/30 dark:text-yellow-300">JavaScript</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/30 dark:text-blue-300">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm dark:bg-green-900/30 dark:text-green-300">Responsive Design</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex-1 text-center py-2 bg-secondary-600 text-white rounded-lg hover:bg-secondary-700 transition-colors">
+                                Live Demo
+                            </a>
+                            <a href="#" class="flex-1 text-center py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700">
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Coming Soon -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg opacity-80">
+                    <div class="h-48 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center">
+                        <i class="fas fa-plus text-6xl text-white"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Next Project</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-primary-600 transition-colors dark:text-gray-400 dark:hover:text-primary-400">
+                                    <i class="fas fa-external-link-alt text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            I'm constantly working on new projects and ideas. Stay tuned for my next creation!
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm dark:bg-gray-700 dark:text-gray-300">Coming Soon</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="flex-1 text-center py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors cursor-not-allowed opacity-50">
+                                Live Demo
+                            </a>
+                            <a href="#" class="flex-1 text-center py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 cursor-not-allowed opacity-50">
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-gray-800 dark:to-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">Get In Touch</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-600 mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold text-gray-800 dark:text-white">Let's talk</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        I'm currently available for freelance work and open to new opportunities. If you have a project that you want to get started or think you need my help with something, then get in touch.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Location</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Pokhara, Nepal</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-300">sandeshchhetri5677@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4 pt-4">
+                        <a href="https://github.com/jerry7675" target="_blank" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-600 hover:text-white transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sandesh-poudel-chhetri-2723a5202/" target="_blank" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-600 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/sandesh_chhetri_c" target="_blank" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-600 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Your name">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Your email">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Your message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold rounded-lg hover:from-primary-700 hover:to-secondary-700 transition-all transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gradient-to-br from-gray-800 to-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-primary-500 to-secondary-600 rounded-full flex items-center justify-center">
+                <i class="fas fa-code text-2xl text-white"></i>
+            </div>
+            
+            <h3 class="text-2xl font-bold mb-4">Sandesh Poudel Chhetri</h3>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+                Computer Engineering Student & Frontend Developer passionate about creating innovative web solutions.
+            </p>
+            
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://github.com/jerry7675" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sandesh-poudel-chhetri-2723a5202/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="https://www.instagram.com/sandesh_chhetri_c" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="mailto:sandeshchhetri5677@gmail.com" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 text-sm">
+                &copy; 2023 Sandesh Poudel Chhetri. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+        
+        // Toggle dark mode
+        function toggleDarkMode() {
+            htmlElement.classList.toggle('dark');
+            localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        }
+        
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+        
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Animate skill bars when they come into view
+        const skillBars = document.querySelectorAll('.skill-bar');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        skillBars.forEach(bar => {
+            observer.observe(bar);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                        mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
